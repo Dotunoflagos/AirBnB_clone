@@ -39,8 +39,8 @@ class BaseModel:
         models.storage.new(self)
         models.storage.save()
 
-    def delete(self):
-        models.storage.delete(self)
+    """def delete(self):
+        models.storage.delete(self)"""
 
     def to_dict(self):
         keyValue = self.__dict__.copy()
