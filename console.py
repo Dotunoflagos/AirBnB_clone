@@ -34,23 +34,50 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """Prints the string representation of an instance"""
-        try:
-            if line == "":
-                print("** class name missing **")
-            elif line.count("BaseModel") != 1:
-                print("** class doesn't exist **")
-            elif len(line.split(" ")) == 1:
-                print("** instance id missing **")
-            elif line.count(" ") == 1:
-                key = line.replace(" ", "." )
-                all_objs = storage.all()
-                if key in all_objs:
-                    print(all_objs[key])
-                else:
-                    print("** no instance found **")
-        except:
+        if line == "":
+            print("** class name missing **")
+        elif line.count("BaseModel") != 1:
+            print("** class doesn't exist **")
+        elif len(line.split(" ")) == 1:
             print("** instance id missing **")
+        elif line.count(" ") == 1:
+            key = line.replace(" ", "." )
+            all_objs = storage.all()
+            if key in all_objs:
+                print(all_objs[key])
+            else:
+                print("** no instance found **")
+        else:
+                print("** no instance found **")
 
+    def do_destroy(self, line):
+        """Prints the string representation of an instance"""
+        if line == "":
+            print("** class name missing **")
+        elif line.count("BaseModel") != 1:
+            print("** class doesn't exist **")
+        elif len(line.split(" ")) == 1:
+            print("** instance id missing **")
+        elif line.count(" ") == 1:
+            key = line.replace(" ", "." )
+            all_objs = storage.all()
+            if key in all_objs:
+                all_objs[key].delete()
+            else:
+                print("** no instance found **")
+        else:
+                print("** no instance found **")
     
+    def do_all(self, line):
+        """Prints the string representation of an instance"""
+        if line in ("BaseModel") or len(line) == 0:
+            all_objs = storage.all()
+            lista = []
+            for key in all_objs:
+                lista.append(all_objs[key].to_dict())
+            print(lista)
+        else:
+                print("** class doesn't exist **")
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
