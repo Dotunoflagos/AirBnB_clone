@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
+import models
 """
 This is the base moedl for all classes
 """
@@ -14,17 +15,29 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         if len(kwargs) != 0:
             for key, value in kwargs.items():
-                self.__dict__[key] = value
+                if key == "__class__":
+                    pass
+                elif key == "created_at":
+                    self.__dict__[key] = datetime.fromisoformat(value)
+                elif key == "updated_at":
+                    self.__dict__[key] = datetime.fromisoformat(value)
+                else:
+                    self.__dict__[key] = value
         else:
-            self.my_number = None
-            self.name = None
+            self.id = str(uuid.uuid4())
             dateString = datetime.now()
             self.created_at = dateString
-            self.id = str(uuid.uuid4())
             self.updated_at = dateString
+            models.storage.new(self)
+
+    """def __setattr__(self, key, value):
+        self.__dict__[key] = value
+        models.storage.new(self)"""
 
     def save(self):
         self.updated_at = datetime.now()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         keyValue = self.__dict__
