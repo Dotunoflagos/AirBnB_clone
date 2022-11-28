@@ -48,10 +48,12 @@ class HBNBCommand(cmd.Cmd):
         """
         Behaviour:
             Creates A new class
-        
+
         usage:
-            **classname: [BaseModel, User, Place, Review, State, City, Amenity]**
-            
+            **
+            classname:
+                [BaseModel, User, Place, Review, State, City, Amenity]
+            **
             (hbnb) create <classname>
         """
 
@@ -68,10 +70,12 @@ class HBNBCommand(cmd.Cmd):
         """
         Behaviour:
             Prints A class by <classname> <id>
-        
+
         usage:
-            **classname: [BaseModel, User, Place, Review, State, City, Amenity]**
-            
+            **
+            classname:
+                [BaseModel, User, Place, Review, State, City, Amenity]
+            **
             (hbnb) show <classname> <id>
         """
 
@@ -95,10 +99,12 @@ class HBNBCommand(cmd.Cmd):
         """
         Behaviour:
             Del A class by <classname> <id>
-        
+
         usage:
-            **classname: [BaseModel, User, Place, Review, State, City]**
-            
+            **
+            classname:
+                [BaseModel, User, Place, Review, State, City, Amenity]
+            **
             (hbnb) destroy <classname> <id>
         """
 
@@ -123,12 +129,13 @@ class HBNBCommand(cmd.Cmd):
         """
         Behaviour:
             all returnes all classes or class specified by <classname> <id>
-        
+
         usage:
-            **classname: [BaseModel, User, Place, Review, State, City]**
-            
+            **
+            classname:
+                [BaseModel, User, Place, Review, State, City, Amenity]
+            **
             (hbnb) all     <classname> <id> -returnes specified-
-            
             (hbnb) all     -returnes all-
         """
 
@@ -150,10 +157,12 @@ class HBNBCommand(cmd.Cmd):
         """
         Behaviour:
             Update A class by <classname> <id>
-        
+
         usage:
-            **classname: [BaseModel, User, Place, Review, State, City]**
-            
+            **
+            classname:
+                [BaseModel, User, Place, Review, State, City, Amenity]
+            **
             (hbnb) update <classname> <id> <attribute_name> <attribute_value>
         """
 

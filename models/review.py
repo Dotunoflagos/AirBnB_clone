@@ -12,7 +12,7 @@ class Review(BaseModel):
     place_id = ""
     user_id = ""
     text = ""
-    
+
     def __init__(self, *args, **kwargs):
         """Initialise Place"""
         super().__init__(self, *args, **kwargs)
