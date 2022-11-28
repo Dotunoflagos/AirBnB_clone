@@ -1,32 +1,44 @@
 #!/usr/local/bin/python3
-"""Console class"""
+"""
+Console class
+"""
 import cmd
 import models
 from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
-    """Comand line processor"""
+    """
+    Comand line processor
+    """
 
     prompt = '(hbnb) '
 
     def do_EOF(self, line):
-        """Exit the comandline"""
+        """
+        Exit the comandline
+        """
 
         return True
 
     def do_quit(self, line):
-        """Exit the comandline"""
+        """
+        Exit the comandline
+        """
 
         return True
 
     def emptyline(self):
-        """empty line"""
+        """
+        empty line
+        """
 
         return False
 
     def do_create(self, line):
-        """Creates new base model"""
+        """
+        Creates new base model
+        """
 
         if line == "BaseModel":
             my_model = BaseModel()
@@ -38,7 +50,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, line):
-        """Prints the string representation of an instance"""
+        """
+        Prints the string representation of an instance
+        """
 
         if line == "":
             print("** class name missing **")
@@ -57,7 +71,9 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, line):
-        """Deletes an instance of base id"""
+        """
+        Deletes an instance of base id
+        """
 
         if line == "":
             print("** class name missing **")
@@ -77,7 +93,9 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_all(self, line):
-        """Returnd all string representation of existing objects"""
+        """
+        Returnd all string representation of existing objects
+        """
 
         if line in ("BaseModel") or len(line) == 0:
             all_objs = models.storage.all()
@@ -93,7 +111,9 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, line):
-        """updates an instance of base id"""
+        """
+        updates an instance of base id
+        """
 
         if line == "":
             print("** class name missing **")
