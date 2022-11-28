@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-import uuid
 from datetime import datetime
 import models
+import uuid
 """
 This is the base moedl for all classes
 """
