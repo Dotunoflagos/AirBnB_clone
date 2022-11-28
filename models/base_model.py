@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-from datetime import datetime
-import models
-import uuid
 """
 This is the base moedl for all classes
 """
+from datetime import datetime
+import models
+import uuid
 
 
 class BaseModel:

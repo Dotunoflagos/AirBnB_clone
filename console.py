@@ -1,8 +1,9 @@
 #!/usr/local/bin/python3
+"""Console class"""
 import cmd
 import models
 from models.base_model import BaseModel
-"""Console class"""
+
 
 class HBNBCommand(cmd.Cmd):
     """Comand line processor"""
