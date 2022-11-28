@@ -7,6 +7,7 @@ from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
     """Comand line processor"""
+
     prompt = '(hbnb) '
 
     def do_EOF(self, line):
@@ -21,10 +22,12 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """empty line"""
+
         return False
 
     def do_create(self, line):
         """Creates new base model"""
+
         if line == "BaseModel":
             my_model = BaseModel()
             my_model.save()
@@ -36,6 +39,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """Prints the string representation of an instance"""
+
         if line == "":
             print("** class name missing **")
         elif line.count("BaseModel") != 1:
@@ -54,6 +58,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """Deletes an instance of base id"""
+
         if line == "":
             print("** class name missing **")
         elif line.count("BaseModel") != 1:
@@ -73,6 +78,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         """Returnd all string representation of existing objects"""
+
         if line in ("BaseModel") or len(line) == 0:
             all_objs = models.storage.all()
             i = 0
@@ -88,6 +94,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """updates an instance of base id"""
+
         if line == "":
             print("** class name missing **")
         elif line.count("BaseModel") != 1:
