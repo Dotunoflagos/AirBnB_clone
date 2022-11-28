@@ -5,8 +5,8 @@ from models.base_model import BaseModel
 """Console class"""
 
 class HBNBCommand(cmd.Cmd):
-    prompt = '(hbnb) '
     """Comand line processor"""
+    prompt = '(hbnb) '
     
     def do_EOF(self, line):
         """Exit the comandline"""
@@ -19,6 +19,7 @@ class HBNBCommand(cmd.Cmd):
         return True
     
     def emptyline(self):
+        """empty line"""
         return False
     
     def do_create(self, line):
