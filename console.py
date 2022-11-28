@@ -24,23 +24,18 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
     def do_EOF(self, line):
-        """
-        Exit the comandline
+        """EOF command to exit the program
         """
 
         return True
 
     def do_quit(self, line):
-        """
-        Exit the comandline
+        """Quit command to exit the program
         """
 
         return True
 
     def emptyline(self):
-        """
-        empty line
-        """
 
         return False
 
