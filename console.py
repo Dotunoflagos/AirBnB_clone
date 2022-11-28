@@ -8,21 +8,21 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """Comand line processor"""
     prompt = '(hbnb) '
-    
+
     def do_EOF(self, line):
         """Exit the comandline"""
-        
+
         return True
-    
+
     def do_quit(self, line):
         """Exit the comandline"""
-        
+
         return True
-    
+
     def emptyline(self):
         """empty line"""
         return False
-    
+
     def do_create(self, line):
         """Creates new base model"""
         if line == "BaseModel":
@@ -43,14 +43,14 @@ class HBNBCommand(cmd.Cmd):
         elif len(line.split(" ")) == 1:
             print("** instance id missing **")
         elif line.count(" ") == 1:
-            key = line.replace(" ", "." )
+            key = line.replace(" ", ".")
             all_objs = models.storage.all()
             if key in all_objs:
                 print(all_objs[key])
             else:
                 print("** no instance found **")
         else:
-                print("** no instance found **")
+            print("** no instance found **")
 
     def do_destroy(self, line):
         """Deletes an instance of base id"""
@@ -61,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(line.split(" ")) == 1:
             print("** instance id missing **")
         elif line.count(" ") == 1:
-            key = line.replace(" ", "." )
+            key = line.replace(" ", ".")
             all_objs = models.storage.all()
             if key in all_objs:
                 models.storage._FileStorage__objects.pop(key)
@@ -69,8 +69,8 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
         else:
-                print("** no instance found **")
-    
+            print("** no instance found **")
+
     def do_all(self, line):
         """Returnd all string representation of existing objects"""
         if line in ("BaseModel") or len(line) == 0:
@@ -78,10 +78,10 @@ class HBNBCommand(cmd.Cmd):
             i = 0
             print("[\"", end="")
             for key in all_objs.keys():
-                print(all_objs[key],end="")
+                print(all_objs[key], end="")
                 i += 1
                 if i != len(all_objs):
-                    print(", ",end="")
+                    print(", ", end="")
             print("\"]")
         else:
             print("** class doesn't exist **")
@@ -100,7 +100,8 @@ class HBNBCommand(cmd.Cmd):
             all_objs = models.storage.all()
             if objKey in all_objs:
                 if key[2] not in ("1d", "created_at", "updated_at"):
-                    all_objs[objKey].__dict__[key[2]] = key[3].replace("\"", "").replace("\'", "")
+                    all_objs[objKey].__dict__[key[2]] = key[3]\
+                        .replace("\"", "").replace("\'", "")
                     models.storage.save()
             else:
                 print("** no instance found **")
@@ -108,6 +109,7 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
         else:
             print("** value missing **")
-    
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
