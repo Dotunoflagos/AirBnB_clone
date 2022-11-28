@@ -1,13 +1,13 @@
 #!usr/bin/python3
 """
-Place module
+Review module
 """
 from models.base_model import BaseModel
 
 
-class City(BaseModel):
+class Review(BaseModel):
     """
-    Place class
+    Review class
     """
     place_id = ""
     user_id = ""

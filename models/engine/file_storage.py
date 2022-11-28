@@ -3,9 +3,14 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.review import Review
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
 
-
-classes = {"BaseModel": BaseModel, "User": User }
+classes = {"BaseModel": BaseModel, "User": User, "Place": Place,
+           "Review": Review, "State": State, "City": City, "Amenity": Amenity}
 
 
 class FileStorage:
@@ -15,7 +20,7 @@ class FileStorage:
 
     def all(self):
         """returns the dictionary __objects"""
-        
+
         if self.__objects is not None and len(self.__objects) != 0:
             newdic = {}
             for key, value in self.__objects.items():

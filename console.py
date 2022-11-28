@@ -5,6 +5,15 @@ Console class
 import cmd
 import models
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.review import Review
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
+
+classes = {"BaseModel": BaseModel, "User": User, "Place": Place,
+           "Review": Review, "State": State, "City": City, "Amenity": Amenity}
 
 
 class HBNBCommand(cmd.Cmd):
@@ -37,11 +46,17 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, line):
         """
-        Creates new base model
+        Behaviour:
+            Creates A new class
+        
+        usage:
+            **classname: [BaseModel, User, Place, Review, State, City, Amenity]**
+            
+            (hbnb) create <classname>
         """
 
-        if line == "BaseModel":
-            my_model = BaseModel()
+        if line in classes:
+            my_model = classes[line]()
             my_model.save()
             print(my_model.id)
         elif line == "":
@@ -51,12 +66,18 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """
-        Prints the string representation of an instance
+        Behaviour:
+            Prints A class by <classname> <id>
+        
+        usage:
+            **classname: [BaseModel, User, Place, Review, State, City, Amenity]**
+            
+            (hbnb) show <classname> <id>
         """
 
         if line == "":
             print("** class name missing **")
-        elif line.count("BaseModel") != 1:
+        elif line.split(" ")[0] not in classes:
             print("** class doesn't exist **")
         elif len(line.split(" ")) == 1:
             print("** instance id missing **")
@@ -72,12 +93,18 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """
-        Deletes an instance of base id
+        Behaviour:
+            Del A class by <classname> <id>
+        
+        usage:
+            **classname: [BaseModel, User, Place, Review, State, City]**
+            
+            (hbnb) destroy <classname> <id>
         """
 
         if line == "":
             print("** class name missing **")
-        elif line.count("BaseModel") != 1:
+        elif line.split(" ")[0] not in classes:
             print("** class doesn't exist **")
         elif len(line.split(" ")) == 1:
             print("** instance id missing **")
@@ -94,10 +121,18 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, line):
         """
-        Returnd all string representation of existing objects
+        Behaviour:
+            all returnes all classes or class specified by <classname> <id>
+        
+        usage:
+            **classname: [BaseModel, User, Place, Review, State, City]**
+            
+            (hbnb) all     <classname> <id> -returnes specified-
+            
+            (hbnb) all     -returnes all-
         """
 
-        if line in ("BaseModel", "User") or len(line) == 0:
+        if line in classes or len(line) == 0:
             all_objs = models.storage.all()
             i = 0
             print("[\"", end="")
@@ -113,12 +148,18 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         """
-        updates an instance of base id
+        Behaviour:
+            Update A class by <classname> <id>
+        
+        usage:
+            **classname: [BaseModel, User, Place, Review, State, City]**
+            
+            (hbnb) update <classname> <id> <attribute_name> <attribute_value>
         """
 
         if line == "":
             print("** class name missing **")
-        elif line.count("BaseModel") != 1:
+        elif line.split(" ")[0] not in classes:
             print("** class doesn't exist **")
         elif len(line.split(" ")) == 1:
             print("** instance id missing **")
@@ -127,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
             objKey = key[0] + "." + key[1]
             all_objs = models.storage.all()
             if objKey in all_objs:
-                if key[2] not in ("1d", "created_at", "updated_at"):
+                if key[2] not in ("id", "created_at", "updated_at"):
                     all_objs[objKey].__dict__[key[2]] = key[3]\
                         .replace("\"", "").replace("\'", "")
                     models.storage.save()
