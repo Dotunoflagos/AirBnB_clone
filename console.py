@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/local/bin/python3
 import cmd
 import models
 from models.base_model import BaseModel
