@@ -45,10 +45,12 @@ class BaseModel:
     def to_dict(self):
         keyValue = self.__dict__.copy()
         keyValue['__class__'] = self.__class__.__name__
-        keyValue['created_at'] = keyValue['created_at']\
-            .strftime("%Y-%m-%dT%H:%M:%S.%f")
-        keyValue['updated_at'] = keyValue['updated_at']\
-            .strftime("%Y-%m-%dT%H:%M:%S.%f")
+        if "created_at" in keyValue:
+            keyValue['created_at'] = keyValue['created_at']\
+                .strftime("%Y-%m-%dT%H:%M:%S.%f")
+        if "updated_at" in keyValue:
+            keyValue['updated_at'] = keyValue['updated_at']\
+                .strftime("%Y-%m-%dT%H:%M:%S.%f")
         return keyValue
 
     def __str__(self):
