@@ -97,15 +97,16 @@ class HBNBCommand(cmd.Cmd):
         Returnd all string representation of existing objects
         """
 
-        if line in ("BaseModel") or len(line) == 0:
+        if line in ("BaseModel", "User") or len(line) == 0:
             all_objs = models.storage.all()
             i = 0
             print("[\"", end="")
             for key in all_objs.keys():
-                print(all_objs[key], end="")
-                i += 1
-                if i != len(all_objs):
-                    print(", ", end="")
+                if key.count(line) == 1 or len(line) == 0:
+                    print(all_objs[key], end="")
+                    i += 1
+                    if i != len(all_objs):
+                        print(", ", end="")
             print("\"]")
         else:
             print("** class doesn't exist **")

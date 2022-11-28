@@ -2,9 +2,10 @@
 """Fils storage module"""
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
-classes = {"BaseModel": BaseModel}
+classes = {"BaseModel": BaseModel, "User": User }
 
 
 class FileStorage:
@@ -14,6 +15,7 @@ class FileStorage:
 
     def all(self):
         """returns the dictionary __objects"""
+        
         if self.__objects is not None and len(self.__objects) != 0:
             newdic = {}
             for key, value in self.__objects.items():
