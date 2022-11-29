@@ -36,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-
+        """ overwriting the emptyline method """
         return False
 
     def do_create(self, line):
