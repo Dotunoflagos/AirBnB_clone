@@ -42,18 +42,6 @@ class FileStorage:
         with open(self.__file_path, 'w') as f:
             json.dump(json_objects, f)
 
-    """def delete(self, obj):
-        if obj is not None:
-            dkey = obj.__class__.__name__ + "." + obj.id
-            self.__objects.pop(dkey)
-            json_objects = {}
-            for key in self.__objects:
-                json_objects[key] = self.__objects[key].to_dict()
-            with open(self.__file_path, 'w') as f:
-                json.dump(json_objects, f)
-            print (f"Object {obj.id} gets destroyed")
-            del obj"""
-
     def reload(self):
         """deserializes the JSON file to __objects"""
         try:

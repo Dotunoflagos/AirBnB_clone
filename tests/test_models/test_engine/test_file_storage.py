@@ -162,6 +162,9 @@ class TestFileStorage_methods(unittest.TestCase):
     def test_reload_with_arg(self):
         with self.assertRaises(TypeError):
             models.storage.reload(None)
+    
+    def test_file_path(self):
+        self.assertEqual(FileStorage._FileStorage__file_path, "file.json")
 
 
 if __name__ == "__main__":
