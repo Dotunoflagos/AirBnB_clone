@@ -5,6 +5,8 @@ import models
 import unittest
 from datetime import datetime
 import time
+from unittest import mock
+BaseModel = models.base_model.BaseModel
 
 
 class TestBaseModelDocs(unittest.TestCase):
@@ -112,7 +114,8 @@ class TestBaseModel(unittest.TestCase):
         string = "[BaseModel] ({}) {}".format(inst.id, inst.__dict__)
         self.assertEqual(string, str(inst))
 
-    def test_save(self):
+    @mock.patch('models.storage')
+    def test_save(self, mock_storage):
         """Test that save method updates `updated_at` and calls
         `storage.save`"""
         inst = BaseModel()
@@ -123,3 +126,5 @@ class TestBaseModel(unittest.TestCase):
         new_updated_at = inst.updated_at
         self.assertNotEqual(old_updated_at, new_updated_at)
         self.assertEqual(old_created_at, new_created_at)
+        self.assertTrue(mock_storage.new.called)
+        self.assertTrue(mock_storage.save.called)
