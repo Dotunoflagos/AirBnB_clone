@@ -11,7 +11,7 @@ BaseModel = models.base_model.BaseModel
 
 class TestBaseModelDocs(unittest.TestCase):
     """Tests to check the documentation and style of BaseModel class"""
-    
+
     def test_module_docstring(self):
         """Test for the existence of module docstring"""
         self.assertIsNot(models.base_model.__doc__, None,
@@ -22,9 +22,10 @@ class TestBaseModelDocs(unittest.TestCase):
     def test_class_docstring(self):
         """Test for the BaseModel class docstring"""
         self.assertIsNot(BaseModel.__doc__, None,
-                        "BaseModel class needs a docstring")
+                         "BaseModel class needs a docstring")
         self.assertTrue(len(BaseModel.__doc__) >= 1,
                         "BaseModel class needs a docstring")
+
 
 class TestBaseModel(unittest.TestCase):
     """Test the BaseModel class"""
@@ -128,3 +129,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(old_created_at, new_created_at)
         self.assertTrue(mock_storage.new.called)
         self.assertTrue(mock_storage.save.called)
+
+
+if __name__ == "__main__":
+    unittest.main()
