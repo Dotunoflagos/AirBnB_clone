@@ -166,6 +166,21 @@ class TestFileStorage_methods(unittest.TestCase):
     def test_file_path(self):
         self.assertEqual(FileStorage._FileStorage__file_path, "file.json")
 
+    def test_SaveSelf(self):
+            """ Check save self """
+            msg = "save() takes 1 positional argument but 2 were given"
+            with self.assertRaises(TypeError) as e:
+                FileStorage.save(self, 100)
+
+            self.assertEqual(str(e.exception), msg)
+
+    def test_SaveSelf2(self):
+        msg = "save() takes 1 positional argument but 2 were given"
+        with self.assertRaises(TypeError) as e:
+            models.storage.save(self)
+
+        self.assertEqual(str(e.exception), msg)
+
 
 if __name__ == "__main__":
     unittest.main()
