@@ -141,13 +141,6 @@ class TestFileStorage_methods(unittest.TestCase):
         cy = City()
         am = Amenity()
         rv = Review()
-        models.storage.new(bm)
-        models.storage.new(us)
-        models.storage.new(st)
-        models.storage.new(pl)
-        models.storage.new(cy)
-        models.storage.new(am)
-        models.storage.new(rv)
         models.storage.save()
         models.storage.reload()
         objs = FileStorage._FileStorage__objects
