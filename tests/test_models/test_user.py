@@ -12,7 +12,13 @@ class UserCase(unittest.TestCase):
 
     def setUp(self):
         """ Before any test """
-        self.u = User()
+        usr = User()
+        usr.email = "test@gmail.com"
+        usr.password = "password"
+        usr.first_name = "first_name"
+        usr.last_name = "last_name"
+        self.u = usr
+        
 
     def test_class_exists(self):
         """tests if class exists"""
