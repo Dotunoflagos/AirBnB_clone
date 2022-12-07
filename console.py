@@ -206,8 +206,8 @@ class HBNBCommand(cmd.Cmd):
                     .replace("\"", "").replace("\'", "")
                 split = replace.split(".")
                 line = split[1] + " " + split[0] + " " + split[2]
-                print(line)
-        print(line)
+                #print(line)
+        #print(line)
         return cmd.Cmd.precmd(self, line) 
 
 if __name__ == '__main__':
