@@ -198,17 +198,14 @@ class HBNBCommand(cmd.Cmd):
     def precmd(self, line):
         splits = line.split(".")
         if splits[0] in classes:
-            if not splits[1].count("-") >= 4:
+            if not splits[1].count(" ") >= 1:
                 line = splits[1] + " " + splits[0]
                 line = line.replace("(", "").replace(")", "")
-            else:
+            elif splits[1].count("-") >= 4:
                 replace = line.replace("(", ".").replace(")", ".")\
                     .replace("\"", "").replace("\'", "")
                 split = replace.split(".")
                 line = split[1] + " " + split[0] + " " + split[2]
-                print(line)
-        else:
-            print("** class doesn't exist **")
         return cmd.Cmd.precmd(self, line) 
 
 if __name__ == '__main__':
