@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
             classname:
                 [BaseModel, User, Place, Review, State, City, Amenity]
             **
-            (hbnb) all     <classname> <id> -returnes specified-
+            (hbnb) all     <classname> -returnes specified-
             (hbnb) all     -returnes all-
         """
 
@@ -183,6 +183,33 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** value missing **")
 
+    def do_count(self, line):
+        """Counts class instances """
+        all_objs = models.storage.all()
+        i = 0
+        if line in classes or len(line) == 0:
+            for key in all_objs.keys():
+                if key.count(line) == 1 or len(line) == 0:
+                    i += 1
+            print(i)
+        else:
+            print("** class doesn't exist **")
+
+    def precmd(self, line):
+        splits = line.split(".")
+        if splits[0] in classes:
+            if not splits[1].count("-") >= 4:
+                line = splits[1] + " " + splits[0]
+                line = line.replace("(", "").replace(")", "")
+            else:
+                replace = line.replace("(", ".").replace(")", ".")\
+                    .replace("\"", "").replace("\'", "")
+                split = replace.split(".")
+                line = split[1] + " " + split[0] + " " + split[2]
+                print(line)
+        else:
+            print("** class doesn't exist **")
+        return cmd.Cmd.precmd(self, line) 
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
