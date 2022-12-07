@@ -197,7 +197,9 @@ class HBNBCommand(cmd.Cmd):
 
     def precmd(self, line):
         splits = line.split(".")
+
         if splits[0] in classes:
+
             if not splits[1].count("-") >= 4 and not line.count(" ") >= 1 and not line.count("\"") >= 1:
                 line = splits[1] + " " + splits[0]
                 line = line.replace("(", "").replace(")", "")
@@ -205,7 +207,13 @@ class HBNBCommand(cmd.Cmd):
                 replace = line.replace("(", ".").replace(")", ".")\
                     .replace("\"", "").replace("\'", "")
                 split = replace.split(".")
-                line = split[1] + " " + split[0] + " " + split[2]
+
+                if replace.count(split[0]) < 2:
+                    line = split[1] + " " + split[0] + " " + split[2]
+                else:
+                    line = split[1] + " " + split[0] + " " + split[3]
+                #print(replace)
+                #print(split)
                 #print(line)
         #print(line)
         return cmd.Cmd.precmd(self, line) 
