@@ -198,7 +198,7 @@ class HBNBCommand(cmd.Cmd):
     def precmd(self, line):
         splits = line.split(".")
         if splits[0] in classes:
-            if not splits[1].count(" ") >= 1:
+            if not splits[1].count("-") >= 4 or line.count(" ") > 0:
                 line = splits[1] + " " + splits[0]
                 line = line.replace("(", "").replace(")", "")
             elif splits[1].count("-") >= 4:
