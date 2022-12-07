@@ -1,0 +1,64 @@
+div.amenitie {
+    padding: 0px;
+    margin-top: 40px;
+    width: auto;
+}
+
+div.amenitie h2 {
+    font-size: 16px;
+    padding-bottom: 15px;
+    border-bottom: solid #DDDDDD 1px;
+}
+
+div.amenitie ul {
+    list-style: none;
+    padding: 0px;
+}
+
+div.amenitie ul li {
+    display: flex;
+    align-items: center;
+}
+
+div.amenitie ul li p {
+    padding-left: 10px;
+    white-space: nowrap;
+}
+
+div.amenitie ul li img {
+    height: 25px;
+}
+
+.user, .description {
+    padding-top: 18px;
+}
+
+
+div.reviews {
+    padding: 0px;
+    margin-top: 40px;
+    width: auto;
+}
+
+div.reviews h2 {
+    font-size: 16px;
+    padding-bottom: 15px;
+    border-bottom: solid #DDDDDD 1px;
+}
+
+div.reviews h3 {
+    font-size: 14px;
+}
+
+div.reviews ul {
+    list-style: none;
+    padding: 0px;
+}
+
+div.reviews ul li p {
+    font-size: 12px;
+}
+
+.user, .description {
+    padding-top: 18px;
+}
