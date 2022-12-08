@@ -226,12 +226,14 @@ class HBNBCommand(cmd.Cmd):
                         line = split[1] + " " + split[0] + " " + split[3]
                 else:
                     if replace.count(split[0]) < 2:
-                        line = split[1] + " " + split[0] + " " + split[2].split("{ ")[0] + " " + opts[0]
+                        line = split[1] + " " + split[0] + " " + split[2]\
+                            .split("{")[0] + " " + opts[0].replace("\'", "\"")
                     else:
-                        line = split[1] + " " + split[0] + " " + split[3].split("{ ")[0] + " " + opts[0]
+                        line = split[1] + " " + split[0] + " " + split[3]\
+                            .split("{")[0] + " " + opts[0].replace("\'", "\"")
                 #print(replace)
-                #print(split)
-                #print(line)
+                print(split)
+                print(line)
         #print(line)
         return cmd.Cmd.precmd(self, line) 
 
