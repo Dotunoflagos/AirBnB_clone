@@ -205,7 +205,7 @@ class HBNBCommand(cmd.Cmd):
                 line = line.replace("(", "").replace(")", "")
             else:
                 replace = line.replace("(", ".").replace(")", ".")\
-                    .replace("\"", "").replace("\'", "")
+                    .replace("\"", "").replace("\'", "").replace(",", "")
                 split = replace.split(".")
 
                 if replace.count(split[0]) < 2:
