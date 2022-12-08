@@ -11,6 +11,8 @@ from models.review import Review
 from models.place import Place
 from models.city import City
 from models.amenity import Amenity
+import json
+import re
 
 classes = {"BaseModel": BaseModel, "User": User, "Place": Place,
            "Review": Review, "State": State, "City": City, "Amenity": Amenity}
@@ -172,9 +174,16 @@ class HBNBCommand(cmd.Cmd):
             objKey = key[0] + "." + key[1]
             all_objs = models.storage.all()
             if objKey in all_objs:
-                if key[2] not in ("id", "created_at", "updated_at"):
+                if key[2] not in ("id", "created_at", "updated_at") and not len(re.findall(r'(\{[^{}]+\})', line)) >= 1:
                     all_objs[objKey].__dict__[key[2]] = key[3]\
                         .replace("\"", "").replace("\'", "")
+                    models.storage.save()
+                else:
+                    #print(line)
+                    #print(re.findall(r'(\{[^{}]+\})', line)[0])
+                    dic = json.loads(re.findall(r'(\{[^{}]+\})', line)[0])
+                    for key, value in dic.items():
+                            setattr(all_objs[objKey], key, value)
                     models.storage.save()
             else:
                 print("** no instance found **")
@@ -196,6 +205,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def precmd(self, line):
+        opts = re.findall(r'(\{[^{}]+\})', line)
+        #print(opts)
         splits = line.split(".")
 
         if splits[0] in classes:
@@ -208,14 +219,20 @@ class HBNBCommand(cmd.Cmd):
                     .replace("\"", "").replace("\'", "").replace(",", "")
                 split = replace.split(".")
 
-                if replace.count(split[0]) < 2:
-                    line = split[1] + " " + split[0] + " " + split[2]
+                if not len(re.findall(r'(\{[^{}]+\})', line)) >= 1:
+                    if replace.count(split[0]) < 2:
+                        line = split[1] + " " + split[0] + " " + split[2]
+                    else:
+                        line = split[1] + " " + split[0] + " " + split[3]
                 else:
-                    line = split[1] + " " + split[0] + " " + split[3]
-                print(replace)
-                print(split)
-                print(line)
-        print(line)
+                    if replace.count(split[0]) < 2:
+                        line = split[1] + " " + split[0] + " " + split[2].split("{ ")[0] + " " + opts[0]
+                    else:
+                        line = split[1] + " " + split[0] + " " + split[3].split("{ ")[0] + " " + opts[0]
+                #print(replace)
+                #print(split)
+                #print(line)
+        #print(line)
         return cmd.Cmd.precmd(self, line) 
 
 if __name__ == '__main__':
