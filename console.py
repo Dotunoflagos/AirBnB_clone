@@ -212,10 +212,10 @@ class HBNBCommand(cmd.Cmd):
                     line = split[1] + " " + split[0] + " " + split[2]
                 else:
                     line = split[1] + " " + split[0] + " " + split[3]
-                #print(replace)
-                #print(split)
-                #print(line)
-        #print(line)
+                print(replace)
+                print(split)
+                print(line)
+        print(line)
         return cmd.Cmd.precmd(self, line) 
 
 if __name__ == '__main__':
